@@ -159,7 +159,7 @@
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
     _.each(collection, function(next, i){
-      if (accumulator == undefined) {
+      if (accumulator === undefined) {
         accumulator = next;
       } else {
         accumulator = iterator(accumulator, next);
