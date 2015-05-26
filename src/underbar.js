@@ -243,6 +243,13 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    _.each(arguments, function(object){
+      for (var property in object) {
+        if (obj[property] == undefined && obj[property] !== NaN)
+          obj[property] = object[property];
+      }
+    });
+    return obj
   };
 
 
