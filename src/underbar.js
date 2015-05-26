@@ -188,7 +188,7 @@
       if (!!iterator)
         return bool === !!iterator(item);
       else
-        return bool == item;
+        return bool === !!item;
     }, true);
   };
 
