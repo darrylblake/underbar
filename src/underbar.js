@@ -230,7 +230,6 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-    var extended_obj = {};
     _.each(arguments, function(object){
       for (var property in object) {
         obj[property] = object[property];
