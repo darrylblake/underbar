@@ -211,9 +211,6 @@
     });
   };
 
-  console.log(_.some([1, 11, 29], function(x){ return x % 2 == 13;}));
-
-
   /**
    * OBJECTS
    * =======
