@@ -184,13 +184,14 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-    return _.reduce(collection, function(bool, item){
-      if (!!iterator)
-        return bool === !!iterator(item);
+    return _.reduce(collection, function(all, next){
+      if (iterator !== undefined)
+        return all && !!iterator(next);
       else
-        return bool === !!item;
+        return all && !!next;
     }, true);
   };
+
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
@@ -200,11 +201,17 @@
     if (collection.length === 0)
       return false;
     // Every will only return true if all items are false
-    // If not ALL items are false, returns true
+    // Check if all items are false, and then invert the result
+    // Meaning if not all false, some must be true
     return !_.every(collection, function(item){
-      return !iterator(item);
+      if (iterator !== undefined)
+        return !iterator(item);
+      else
+        return !item;
     });
   };
+
+  console.log(_.some([1, 11, 29], function(x){ return x % 2 == 13;}));
 
 
   /**
