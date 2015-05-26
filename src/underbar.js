@@ -196,6 +196,14 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    // Empty arrays return true but are false when compared??
+    if (collection.length === 0)
+      return false;
+    // Every will only return true if all items are false
+    // If not ALL items are false, returns true
+    return !_.every(collection, function(item){
+      return !iterator(item);
+    });
   };
 
 
