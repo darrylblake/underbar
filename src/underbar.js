@@ -310,7 +310,16 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
-    setTimeout.apply(this, arguments);
+    var args = [];
+    // I'm assuming this is similar to what slice.call() would do?
+    _.each(arguments, function(item, i){
+      if (i > 1)
+        args.push(item);
+    });
+    return setTimeout(function(){
+      return func.apply(this, args);
+    }, wait);
+    //setTimeout.apply(this, arguments);
   };
 
 
