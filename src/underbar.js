@@ -327,22 +327,22 @@
   _.shuffle = function(array) {
     var copy = array.slice();
     var shuffled = [];
-    function getRandom(){
-      return Math.floor(Math.random() * array.length)  
+
+    // Returns a random element in an array whilst removing it
+    function randomPop(arr){
+      var randomIndex = Math.floor(Math.random() * arr.length)
+      return arr.splice(randomIndex, 1)[0];
     }
-    _.each(array, function(item) {
-      function placeRandomly(){
-        var randomIndex = getRandom();
-        if (shuffled[randomIndex]){
-          placeRandomly(item);
-        }
-        else {
-          shuffled[randomIndex] = item
-        }
-      }
-      placeRandomly();
+    _.each(array, function(){
+      shuffled.push(randomPop(copy));
     });
-    return shuffled;
+
+    // Reshuffle if still the same
+    if (shuffled.toString() === array.toString())
+      // Remember to return result!
+      return _.shuffle(array);
+    else
+      return shuffled;
   };
 
 
